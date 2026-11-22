@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<section class="mast wrap" aria-label="Apresentação">
+  <p class="credit">{{ site.title }} · textos de {{ site.author }}</p>
+  <h1 class="lede">{{ site.tagline }}</h1>
+  {% include also.html %}
+</section>
+
+<section class="wrap" id="textos" aria-labelledby="t-textos">
+  <div class="listhead">
+    <h2 id="t-textos">Textos <span class="stats" id="count">({{ site.posts.size }})</span></h2>
+    {% if site.posts.size > 1 %}
+    <div class="filters">
+      <input id="q" type="search" placeholder="Buscar nos textos" aria-label="Buscar nos textos" autocomplete="off">
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por tag"><button class="chip" type="button" data-tag="" aria-pressed="true">Todos</button></div>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if site.posts.size > 0 %}
+  <ol class="index" id="index">
+    {% for post in site.posts %}{% assign mi = post.date | date: "%-m" | minus: 1 %}
+    <li class="row" data-tags="{{ post.tags | join: '|' | escape }}" data-q="{{ post.title | escape }} {{ post.filme | escape }} {{ post.direcao | escape }} {{ post.ano }} {{ post.tags | join: ' ' | escape }} {{ post.content | strip_html | strip_newlines | escape }}">
+      <a href="{{ post.url | relative_url }}">
+        <div>
+          {% if forloop.first %}<span class="flag"><span class="rec" aria-hidden="true"></span>Mais recente</span>{% endif %}
+          <h3 class="ft">{{ post.filme | escape }}{% if post.ano %}<small>{{ post.ano }}</small>{% endif %}</h3>
+          <p class="hd">{{ post.title | escape }}</p>
+        </div>
+        <div class="m">
+          <span class="tk cor-{{ post.cor | default: 'rosa' }}" aria-hidden="true"></span><br>
+          {{ post.date | date: "%-d" }} {{ site.mes[mi] }} {{ post.date | date: "%Y" }}{% if post.direcao %}<br>{{ post.direcao | escape }}{% endif %}{% if post.nota %}<br>{{ post.nota | replace: ".", "," }}/5{% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="empty" id="empty" hidden>Nenhum texto com essa busca.</p>
+  {% else %}
+  <p class="empty-all">Ainda não há textos aqui.</p>
+  {% endif %}
+</section>

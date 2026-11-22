@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<article>
+  <header class="ph wrap">
+    <a class="lnk back" href="{{ '/' | relative_url }}">← Início</a>
+    <h1><span class="fb sm">{{ page.title | escape }}</span></h1>
+  </header>
+  <div class="wrap">
+    <div class="body">
+      <aside class="facts"><dl>
+        <div><dt>Blog</dt><dd>{{ site.title }}</dd></div>
+        <div><dt>Textos de</dt><dd>{{ site.author }}</dd></div>
+      </dl></aside>
+      <div class="prose">
+        {{ content }}
+        <div class="links">{% include links.html cls="btn" %}</div>
+      </div>
+    </div>
+    <div class="pn" aria-hidden="true"></div>
+  </div>
+</article>

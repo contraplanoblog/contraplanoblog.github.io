@@ -1,0 +1,6 @@
+{% assign parts = "" | split: "" %}{% assign L = site.links %}
+{% if L.letterboxd != "" and L.letterboxd %}{% capture a %}<a href="{{ L.letterboxd }}" target="_blank" rel="noopener">Letterboxd</a>{% endcapture %}{% assign parts = parts | push: a %}{% endif %}
+{% if L.x != "" and L.x %}{% capture a %}<a href="{{ L.x }}" target="_blank" rel="noopener">X</a>{% endcapture %}{% assign parts = parts | push: a %}{% endif %}
+{% if L.tiktok != "" and L.tiktok %}{% capture a %}<a href="{{ L.tiktok }}" target="_blank" rel="noopener">TikTok</a>{% endcapture %}{% assign parts = parts | push: a %}{% endif %}
+{% if L.instagram != "" and L.instagram %}{% capture a %}<a href="{{ L.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endcapture %}{% assign parts = parts | push: a %}{% endif %}
+{% if parts.size > 0 %}<p class="also">Também estou no {% for p in parts %}{% if forloop.index > 1 %}{% if forloop.last %} e no {% else %}, no {% endif %}{% endif %}{{ p }}{% endfor %}.</p>{% endif %}

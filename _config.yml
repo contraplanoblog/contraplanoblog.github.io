@@ -1,0 +1,36 @@
+# ------------------------------------------------------------
+# Configurações do blog. Depois de mudar algo aqui, salve
+# (Commit changes) e espere 1 ou 2 minutos para o site atualizar.
+# ------------------------------------------------------------
+
+title: Contraplano
+tagline: Escrevo sobre os filmes que vejo e sobre o que eles dizem do mundo.
+author: Victor Reis
+
+# Cor da página inicial: rosa, azul, amarelo, menta, laranja ou lilas
+cor: rosa
+
+# Seus links (deixe "" para não mostrar)
+links:
+  letterboxd: "https://letterboxd.com/Mirrad/"
+  x: "https://x.com/Mirrad_i"
+  tiktok: ""
+  instagram: ""
+
+# Texto da página Sobre fica no arquivo sobre.md
+
+# ------------------------------------------------------------
+# Daqui para baixo é configuração técnica: não precisa mexer.
+# ------------------------------------------------------------
+lang: pt-BR
+timezone: America/Sao_Paulo
+permalink: /:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+meses: [janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro]
+mes: [jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez]
+exclude: [LEIAME.md, README.md, modelo-de-texto.md]
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }

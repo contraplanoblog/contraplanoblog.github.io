@@ -1,0 +1,29 @@
+---
+layout: default
+---
+{% assign mi = page.date | date: "%-m" | minus: 1 %}
+<article>
+  <header class="ph wrap">
+    <a class="lnk back" href="{{ '/#textos' | relative_url }}">← Todos os textos</a>
+    <p class="credit">Crítica</p>
+    <h1><span class="fb">{{ page.filme | escape }}</span><span class="hl">{{ page.title | escape }}</span></h1>
+  </header>
+  <div class="wrap">
+    <div class="body">
+      <aside class="facts"><dl>
+        <div><dt>Filme</dt><dd>{{ page.filme | escape }}{% if page.ano %} ({{ page.ano }}){% endif %}</dd></div>
+        {% if page.direcao %}<div><dt>Direção</dt><dd>{{ page.direcao | escape }}</dd></div>{% endif %}
+        {% if page.nota %}<div><dt>Nota</dt><dd>{{ page.nota | replace: ".", "," }}/5</dd></div>{% endif %}
+        <div><dt>Publicado em</dt><dd>{{ page.date | date: "%-d" }} de {{ site.meses[mi] }} de {{ page.date | date: "%Y" }}</dd></div>
+        <div><dt>Leitura</dt><dd>{{ content | strip_html | number_of_words | divided_by: 200 | at_least: 1 }} min</dd></div>
+        {% if page.tags.size > 0 %}<div><dt>Tags</dt><dd>{{ page.tags | join: ", " | escape }}</dd></div>{% endif %}
+        <div><dt>Texto</dt><dd>{{ site.author }}</dd></div>
+      </dl></aside>
+      <div class="prose">{{ content }}</div>
+    </div>
+    <nav class="pn" aria-label="Outros textos">
+      {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">Anterior<b>{{ page.previous.filme | escape }}</b></a>{% endif %}
+      {% if page.next %}<a class="nx" href="{{ page.next.url | relative_url }}">Próximo<b>{{ page.next.filme | escape }}</b></a>{% endif %}
+    </nav>
+  </div>
+</article>
