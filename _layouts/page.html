@@ -4,9 +4,16 @@ layout: default
 <article>
   <header class="ph wrap">
     <a class="lnk back" href="{{ '/' | relative_url }}">← Início</a>
-    <h1><span class="fb sm">{{ page.title | escape }}</span></h1>
+    <div class="ph-grid">
+      <span class="spot" aria-hidden="true"></span>
+      <div class="ph-main">
+        <p class="kick">{{ site.title }}</p>
+        <h1><span class="fb sm">{{ page.title | escape }}</span></h1>
+      </div>
+    </div>
   </header>
   <div class="wrap">
+    <div class="dots" aria-hidden="true"></div>
     <div class="body">
       <aside class="facts"><dl>
         <div><dt>Blog</dt><dd>{{ site.title }}</dd></div>

@@ -1,13 +1,24 @@
 ---
 layout: default
 ---
-<section class="mast wrap" aria-label="Apresentação">
-  <p class="credit">{{ site.title }} · textos de {{ site.author }}</p>
-  <h1 class="lede">{{ site.tagline }}</h1>
-  {% include also.html %}
+{% assign latest = site.posts.first %}
+<section class="poster wrap" aria-label="Apresentação">
+  <h1 class="headline">{{ site.tagline }}</h1>
+  <div class="stage">
+    <p class="side l">{% if latest %}<a href="{{ latest.url | relative_url }}">“{{ latest.title | escape }}”</a>{% else %}“{{ site.title }}”{% endif %}</p>
+    <p class="split l" aria-hidden="true">Contra</p>
+    <img class="figure" src="{{ '/assets/camera.svg' | relative_url }}" width="600" height="830" alt="Ilustração em retícula de uma câmera de cinema com olhos de coração">
+    <p class="split r" aria-hidden="true">Plano</p>
+    <p class="side r">{% if latest %}{{ latest.date | date: "%Y.%-m.%-d" }}{% else %}{{ site.time | date: "%Y.%-m.%-d" }}{% endif %}</p>
+  </div>
+  <div class="foot-poster">
+    <div class="latest"><p>{% if latest %}<a href="{{ latest.url | relative_url }}">Último texto: {{ latest.filme | escape }}. {{ latest.content | strip_html | strip_newlines | truncatewords: 26 }}</a>{% else %}Textos de {{ site.author }}.{% endif %}</p>{% include also.html %}</div>
+    <p class="mark"><small>Críticas &amp; resenhas</small><b>{{ site.title }}</b></p>
+  </div>
 </section>
 
 <section class="wrap" id="textos" aria-labelledby="t-textos">
+  <div class="dots" aria-hidden="true"></div>
   <div class="listhead">
     <h2 id="t-textos">Textos <span class="stats" id="count">({{ site.posts.size }})</span></h2>
     {% if site.posts.size > 1 %}
@@ -24,13 +35,13 @@ layout: default
     <li class="row" data-tags="{{ post.tags | join: '|' | escape }}" data-q="{{ post.title | escape }} {{ post.filme | escape }} {{ post.direcao | escape }} {{ post.ano }} {{ post.tags | join: ' ' | escape }} {{ post.content | strip_html | strip_newlines | escape }}">
       <a href="{{ post.url | relative_url }}">
         <div>
-          {% if forloop.first %}<span class="flag"><span class="rec" aria-hidden="true"></span>Mais recente</span>{% endif %}
+          {% if forloop.first %}<span class="flag"><i aria-hidden="true"></i>Mais recente</span>{% endif %}
           <h3 class="ft">{{ post.filme | escape }}{% if post.ano %}<small>{{ post.ano }}</small>{% endif %}</h3>
           <p class="hd">{{ post.title | escape }}</p>
         </div>
-        <div class="m">
-          <span class="tk cor-{{ post.cor | default: 'rosa' }}" aria-hidden="true"></span><br>
-          {{ post.date | date: "%-d" }} {{ site.mes[mi] }} {{ post.date | date: "%Y" }}{% if post.direcao %}<br>{{ post.direcao | escape }}{% endif %}{% if post.nota %}<br>{{ post.nota | replace: ".", "," }}/5{% endif %}
+        <div class="m cor-{{ post.cor | default: 'rosa' }}">
+          <span class="ht" aria-hidden="true"></span>
+          <span>{{ post.date | date: "%-d" }} {{ site.mes[mi] }} {{ post.date | date: "%Y" }}</span>{% if post.direcao %}<span>{{ post.direcao | escape }}</span>{% endif %}{% if post.nota %}<span>{{ post.nota | replace: ".", "," }}/5</span>{% endif %}
         </div>
       </a>
     </li>
