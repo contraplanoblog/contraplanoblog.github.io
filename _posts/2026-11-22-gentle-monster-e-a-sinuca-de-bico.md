@@ -5,7 +5,7 @@ ano: 2026
 direcao: "Marie Kreutzer"
 cor: lilas
 tags: [Drama, Cannes 2026]
-date: 2026-11-22 18:40:00 -0300
+date: 2026-11-22 18:30:00 -0300
 ---
 
 Eu não estava muito animado para ver *Gentle Monster*. Mas, quando comentei sobre ele no meu Twitter, a procura foi grande, além da fatídica entrevista em que a Léa Seydoux fez caras e bocas quando o filme foi comparado a *Fjord* (de que eu gostei). Então, obviamente, assisti com certo cuidado, prestando bastante atenção na atuação dela (não sou nenhum especialista).
