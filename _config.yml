@@ -26,9 +26,9 @@ goatcounter: ""
 # Comentários (giscus): não precisa mexer
 giscus:
   repo: contraplanoblog/contraplanoblog.github.io
-  repo_id: ""
+  repo_id: "R_kgDOV37CYA"
   category: Announcements
-  category_id: ""
+  category_id: "DIC_kwDOV37CYM4DLwJc"
 
 # Texto da página Sobre fica no arquivo sobre.md
 
