@@ -6,7 +6,7 @@ layout: default
   <header class="ph wrap">
     <a class="lnk back" href="{{ '/#textos' | relative_url }}">← Todos os textos</a>
     <div class="ph-grid">
-      <span class="spot" aria-hidden="true"></span>
+      {% if page.ilustracao %}<img class="ilus" src="{{ page.ilustracao | relative_url }}" alt="" width="600" height="600">{% else %}<span class="spot" aria-hidden="true"></span>{% endif %}
       <div class="ph-main">
         <p class="kick">Crítica{% if page.ano %} · {{ page.ano }}{% endif %}{% if page.direcao %} · {{ page.direcao | escape }}{% endif %}</p>
         <h1><span class="fb">{{ page.filme | escape }}</span><span class="hl">{{ page.title | escape }}</span></h1>
@@ -28,6 +28,7 @@ layout: default
       </dl></aside>
       <div class="prose">{{ content }}</div>
     </div>
+    {% include comentarios.html %}
     <nav class="pn" aria-label="Outros textos">
       {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">Anterior<b>{{ page.previous.filme | escape }}</b></a>{% endif %}
       {% if page.next %}<a class="nx" href="{{ page.next.url | relative_url }}">Próximo<b>{{ page.next.filme | escape }}</b></a>{% endif %}

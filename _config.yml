@@ -17,20 +17,52 @@ links:
   tiktok: ""
   instagram: ""
 
+# Usuário do Letterboxd para a lista "Vi recentemente" (atualizada todo dia)
+letterboxd_usuario: mirrad
+
+# Contador de visitas GoatCounter: o "code" da sua conta (deixe "" para desligar)
+goatcounter: ""
+
+# Comentários (giscus): não precisa mexer
+giscus:
+  repo: contraplanoblog/contraplanoblog.github.io
+  repo_id: ""
+  category: Announcements
+  category_id: ""
+
 # Texto da página Sobre fica no arquivo sobre.md
 
 # ------------------------------------------------------------
 # Daqui para baixo é configuração técnica: não precisa mexer.
 # ------------------------------------------------------------
+url: https://contraplanoblog.github.io
+description: Escrevo sobre os filmes que vejo e sobre o que eles dizem do mundo.
 lang: pt-BR
+locale: pt_BR
 timezone: America/Sao_Paulo
 permalink: /:title/
 markdown: kramdown
 kramdown:
   input: GFM
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+feed:
+  path: feed.xml
+twitter:
+  username: Mirrad_i
+  card: summary_large_image
+social:
+  name: Victor Reis
+  links:
+    - https://letterboxd.com/Mirrad/
+    - https://x.com/Mirrad_i
 meses: [janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro]
 mes: [jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez]
-exclude: [LEIAME.md, README.md, modelo-de-texto.md]
+exclude: [LEIAME.md, README.md, modelo-de-texto.md, tools]
 defaults:
+  - scope: { path: "" }
+    values: { image: /assets/compartilhar/contraplano.png }
   - scope: { path: "", type: posts }
     values: { layout: post }

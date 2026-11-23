@@ -5,6 +5,8 @@ ano: 2026
 direcao: "Cristian Mungiu"
 cor: azul
 tags: [Drama, Cannes 2026]
+ilustracao: /assets/ilustracoes/fjord.svg
+image: /assets/compartilhar/fjord-e-as-contradicoes-do-pais-modelo.png
 ---
 
 *Fjord*, de Cristian Mungiu, é um filme feito para gerar debate, seja na internet, seja em qualquer lugar onde for pautado. Vencedor da Palma de Ouro em Cannes, a segunda do diretor romeno, o filme acompanha uma família evangélica formada por Mihai (Sebastian Stan), um engenheiro romeno, e Lisbet (Renate Reinsve), norueguesa, que se muda com os cinco filhos para uma pequena cidade à beira de um fiorde. Quando uma professora nota hematomas nas costas de uma das crianças, o Barnevernet, serviço de proteção infantil da Noruega, retira os cinco filhos do casal e os coloca em famílias acolhedoras enquanto o caso é investigado. A história se inspira no caso real da família Bodnariu, que provocou protestos na Romênia e em várias partes do mundo entre 2015 e 2016. E Mungiu é esperto: nunca entrega ao espectador a certeza de que houve abuso ou não, e é nessa ambiguidade que o filme cresce.

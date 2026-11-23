@@ -3,13 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{% if page.title and page.url != "/" %}{% assign t = page.title | append: " · " | append: site.title %}{% else %}{% assign t = site.title %}{% endif %}
-<title>{{ t | escape }}</title>
-{% if page.filme %}{% assign desc = page.excerpt | strip_html | strip_newlines | truncate: 160 %}{% else %}{% assign desc = site.tagline %}{% endif %}
-<meta name="description" content="{{ desc | escape }}">
-<meta property="og:title" content="{{ t | escape }}">
-<meta property="og:description" content="{{ desc | escape }}">
-<meta property="og:type" content="{% if page.filme %}article{% else %}website{% endif %}">
+{% seo %}
+{% feed_meta %}
 <meta name="theme-color" content="#f2eee8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +15,7 @@
 <body class="cor-{{ page.cor | default: site.cor }}">
 <header class="top"><div class="wrap">
   {% unless page.url == "/" %}<a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>{% endunless %}
-  <nav class="nav" aria-label="Principal"><a class="lnk" href="{{ '/#textos' | relative_url }}">Textos</a><a class="lnk" href="{{ '/sobre/' | relative_url }}">Sobre</a></nav>
+  <nav class="nav" aria-label="Principal"><a class="lnk" href="{{ '/#textos' | relative_url }}">Textos</a><a class="lnk" href="{{ '/arquivo/' | relative_url }}">Arquivo</a><a class="lnk" href="{{ '/sobre/' | relative_url }}">Sobre</a></nav>
 </div></header>
 <main>
 {{ content }}
@@ -29,9 +24,10 @@
   <div class="wrap"><div class="dots" aria-hidden="true"></div></div>
   <div class="wrap">
     <div><p class="mine">Obrigado por ler.</p><p class="c">{{ site.title }} · textos de {{ site.author }} · {{ site.time | date: "%Y" }}</p></div>
-    <nav aria-label="Redes">{% include links.html cls="lnk" %}</nav>
+    <nav aria-label="Redes">{% include links.html cls="lnk" %}<a class="lnk" href="{{ '/feed.xml' | relative_url }}">RSS</a></nav>
   </div>
 </footer>
 <script src="{{ '/assets/app.js' | relative_url }}"></script>
+{% if site.goatcounter and site.goatcounter != "" %}<script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>{% endif %}
 </body>
 </html>

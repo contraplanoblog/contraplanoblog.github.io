@@ -1,0 +1,62 @@
+---
+layout: default
+title: Arquivo
+permalink: /arquivo/
+description: Todos os textos do Contraplano por nota, direção, tag e ano do filme.
+---
+<article>
+  <header class="ph wrap">
+    <a class="lnk back" href="{{ '/' | relative_url }}">← Início</a>
+    <div class="ph-grid">
+      <span class="spot" aria-hidden="true"></span>
+      <div class="ph-main">
+        <p class="kick">{{ site.title }} · {{ site.posts.size }} {% if site.posts.size == 1 %}texto{% else %}textos{% endif %}</p>
+        <h1><span class="fb sm">Arquivo</span></h1>
+      </div>
+    </div>
+    <nav class="jump" aria-label="Seções do arquivo"><a class="lnk" href="#notas">Por nota</a><a class="lnk" href="#direcao">Por direção</a><a class="lnk" href="#tags">Por tag</a><a class="lnk" href="#anos">Por ano do filme</a></nav>
+  </header>
+
+  <div class="wrap arq">
+    {% assign comnota = site.posts | where_exp: "p", "p.nota" | sort: "nota" | reverse %}
+    <section id="notas" aria-labelledby="h-notas">
+      <div class="dots" aria-hidden="true"></div>
+      <h2 id="h-notas">Por nota</h2>
+      {% if comnota.size > 0 %}
+      <ol class="arq-list rank">
+        {% for p in comnota %}<li><a href="{{ p.url | relative_url }}"><b>{{ p.filme | escape }}</b><span>{{ p.nota | replace: ".", "," }}/5</span></a></li>{% endfor %}
+      </ol>
+      {% else %}
+      <p class="arq-empty">Nenhum texto com nota por enquanto.</p>
+      {% endif %}
+    </section>
+
+    {% assign pordiretor = site.posts | where_exp: "p", "p.direcao" | group_by: "direcao" | sort: "name" %}
+    <section id="direcao" aria-labelledby="h-direcao">
+      <div class="dots" aria-hidden="true"></div>
+      <h2 id="h-direcao">Por direção</h2>
+      <dl class="arq-groups">
+        {% for g in pordiretor %}<div><dt>{{ g.name | escape }}</dt><dd>{% for p in g.items %}<a href="{{ p.url | relative_url }}">{{ p.filme | escape }}{% if p.ano %} <small>{{ p.ano }}</small>{% endif %}</a>{% endfor %}</dd></div>{% endfor %}
+      </dl>
+    </section>
+
+    {% assign tagnames = "" | split: "" %}{% for t in site.tags %}{% assign tagnames = tagnames | push: t[0] %}{% endfor %}{% assign tagnames = tagnames | sort %}
+    <section id="tags" aria-labelledby="h-tags">
+      <div class="dots" aria-hidden="true"></div>
+      <h2 id="h-tags">Por tag</h2>
+      <dl class="arq-groups">
+        {% for nome in tagnames %}<div><dt>{{ nome | escape }}</dt><dd>{% for p in site.tags[nome] %}<a href="{{ p.url | relative_url }}">{{ p.filme | escape }}{% if p.ano %} <small>{{ p.ano }}</small>{% endif %}</a>{% endfor %}</dd></div>{% endfor %}
+      </dl>
+    </section>
+
+    {% assign porano = site.posts | where_exp: "p", "p.ano" | group_by: "ano" | sort: "name" | reverse %}
+    <section id="anos" aria-labelledby="h-anos">
+      <div class="dots" aria-hidden="true"></div>
+      <h2 id="h-anos">Por ano do filme</h2>
+      <dl class="arq-groups">
+        {% for g in porano %}<div><dt>{{ g.name }}</dt><dd>{% for p in g.items %}<a href="{{ p.url | relative_url }}">{{ p.filme | escape }}</a>{% endfor %}</dd></div>{% endfor %}
+      </dl>
+    </section>
+    <div class="pn" aria-hidden="true"></div>
+  </div>
+</article>

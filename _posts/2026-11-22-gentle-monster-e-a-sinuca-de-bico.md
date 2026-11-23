@@ -5,6 +5,8 @@ ano: 2026
 direcao: "Marie Kreutzer"
 cor: lilas
 tags: [Drama, Cannes 2026]
+ilustracao: /assets/ilustracoes/gentle-monster.svg
+image: /assets/compartilhar/gentle-monster-e-a-sinuca-de-bico.png
 date: 2026-11-22 18:30:00 -0300
 ---
 

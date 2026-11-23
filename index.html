@@ -40,7 +40,7 @@ layout: default
           <p class="hd">{{ post.title | escape }}</p>
         </div>
         <div class="m cor-{{ post.cor | default: 'rosa' }}">
-          <span class="ht" aria-hidden="true"></span>
+          {% if post.ilustracao %}<img class="thumb" src="{{ post.ilustracao | relative_url }}" alt="" width="600" height="600" loading="lazy">{% else %}<span class="ht" aria-hidden="true"></span>{% endif %}
           <span>{{ post.date | date: "%-d" }} {{ site.mes[mi] }} {{ post.date | date: "%Y" }}</span>{% if post.direcao %}<span>{{ post.direcao | escape }}</span>{% endif %}{% if post.nota %}<span>{{ post.nota | replace: ".", "," }}/5</span>{% endif %}
         </div>
       </a>
@@ -52,3 +52,21 @@ layout: default
   <p class="empty-all">Ainda não há textos aqui.</p>
   {% endif %}
 </section>
+
+{% if site.data.letterboxd and site.data.letterboxd.size > 0 %}
+<section class="wrap lb" aria-labelledby="h-lb">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="listhead">
+    <h2 id="h-lb">Vi recentemente <span class="stats">no Letterboxd</span></h2>
+    {% if site.links.letterboxd != "" %}<a class="lnk" href="{{ site.links.letterboxd }}" target="_blank" rel="noopener">Diário completo →</a>{% endif %}
+  </div>
+  <ol class="lb-list">
+    {% for f in site.data.letterboxd limit: 8 %}
+    <li><a href="{{ f.link }}" target="_blank" rel="noopener">
+      <b>{{ f.titulo | escape }}</b>{% if f.ano != "" %}<small>{{ f.ano }}</small>{% endif %}
+      {% capture extra %}{% if f.estrelas != "" %}<em aria-label="nota {{ f.nota }} de 5">{{ f.estrelas }}</em>{% endif %}{% if f.curtiu %}<i aria-label="curtiu">♥</i>{% endif %}{% if f.revisto %} revisto{% endif %}{% endcapture %}<span>{{ extra }}{% if f.data_curta != "" %}{% if extra != "" %} · {% endif %}{{ f.data_curta }}{% endif %}</span>
+    </a></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}

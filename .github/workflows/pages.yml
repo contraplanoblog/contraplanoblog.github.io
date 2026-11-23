@@ -1,0 +1,48 @@
+# Monta e publica o blog no GitHub Pages.
+# Roda a cada alteração na branch main e também todo dia às 6h17 (horário de Brasília),
+# para atualizar a lista do Letterboxd e soltar textos agendados.
+name: Montar e publicar o blog
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Buscar os filmes recentes do Letterboxd
+        run: |
+          usuario=$(grep -E '^letterboxd_usuario:' _config.yml | awk '{print $2}' | tr -d '"')
+          mkdir -p _data
+          if [ -n "$usuario" ]; then python3 .github/scripts/letterboxd.py "$usuario" _data/letterboxd.json; fi
+        continue-on-error: true
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
